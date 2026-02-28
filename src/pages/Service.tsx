@@ -71,8 +71,8 @@ export default function Service() {
               className="group relative rounded-2xl overflow-hidden bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.1] hover:bg-white/[0.04] transition-all duration-500"
             >
               {idx === 0 && (
-                <div className="absolute top-4 right-4 z-10 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-500 text-xs font-semibold">
-                  Paling Populer
+                <div className="absolute top- right- z-0 px- py- rounded-full bg-red-00/0 border border-red-00/0 text-red-00 text-xs font-semibold">
+
                 </div>
               )}
 
