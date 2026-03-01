@@ -30,18 +30,18 @@ export default function Footer() {
               <h3 className="text-xl font-bold text-white mb-1">Dapatkan Info Terbaru</h3>
               <p className="text-gray-500 text-sm">Terima promo eksklusif, update terbaru, dan tips otomotif langsung ke email Anda.</p>
             </div>
-            <form onSubmit={handleNewsletter} className="flex w-full md:w-auto gap-2">
+            <form onSubmit={handleNewsletter} className="flex flex-col sm:flex-row w-full md:w-auto gap-3">
               <input
                 type="email"
                 required
                 value={newsletterEmail}
                 onChange={(e) => setNewsletterEmail(e.target.value)}
                 placeholder="Masukkan email Anda"
-                className="flex-1 md:w-72 px-5 py-3 rounded-xl bg-white/[0.04] border border-white/[0.08] text-white placeholder-gray-500 text-sm focus:outline-none focus:border-red-500/50 transition-colors"
+                className="w-full sm:flex-1 md:w-72 px-5 py-3 rounded-xl bg-white/[0.04] border border-white/[0.08] text-white placeholder-gray-500 text-sm focus:outline-none focus:border-red-500/50 transition-colors"
               />
               <button
                 type="submit"
-                className="px-5 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-medium text-sm transition-all flex items-center gap-2 whitespace-nowrap"
+                className="w-full sm:w-auto px-5 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-medium text-sm transition-all flex items-center justify-center gap-2 whitespace-nowrap"
               >
                 {newsletterStatus === 'success' ? (
                   <><CheckCircle size={16} /> Berlangganan!</>

@@ -113,7 +113,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           {content.hero_image && (
             <div
-              className="absolute inset-0 bg-cover bg-center opacity-15"
+              className="absolute inset-0 bg-cover bg-center opacity-45"
               style={{ backgroundImage: `url(${content.hero_image})` }}
             />
           )}
@@ -132,7 +132,7 @@ export default function Home() {
               >
                 <div className="flex items-center gap-2 mb-6">
                   <div className="w-8 h-[2px] bg-red-500" />
-                  <span className="text-red-500 text-sm font-semibold tracking-wider uppercase">Cat Mobil Premium</span>
+                  <span className="text-red-500 text-sm font-semibold tracking-wider uppercase">Repaint Mobil Premium</span>
                 </div>
 
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight mb-6 leading-[1.1]">
@@ -195,16 +195,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <div className="w-5 h-8 rounded-full border-2 border-white/20 flex items-start justify-center p-1">
-            <div className="w-1 h-2 rounded-full bg-red-500" />
-          </div>
-        </motion.div>
+
       </section>
 
       {/* Trust Strip */}
@@ -411,8 +402,8 @@ export default function Home() {
               <button
                 onClick={copyToClipboard}
                 className={`w-full py-3.5 rounded-xl font-bold flex items-center justify-center gap-2 transition-all ${copied
-                    ? 'bg-green-600 text-white'
-                    : 'bg-red-600 hover:bg-red-700 text-white'
+                  ? 'bg-green-600 text-white'
+                  : 'bg-red-600 hover:bg-red-700 text-white'
                   }`}
               >
                 {copied ? (
