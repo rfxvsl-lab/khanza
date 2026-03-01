@@ -57,6 +57,12 @@ export default function Home() {
     // Check voucher enabled status
     const checkVoucher = async () => {
       try {
+        const isClaimedLocal = localStorage.getItem('voucher_claimed');
+        if (isClaimedLocal === 'true') {
+          setVoucherEnabled(false);
+          return;
+        }
+
         const res = await fetch('/api/voucher-status');
         const data = await res.json();
         setVoucherEnabled(data.enabled);
@@ -83,6 +89,9 @@ export default function Home() {
       });
       const data = await res.json();
       if (res.ok) {
+        // Save to local storage to prevent multiple claims on same device
+        localStorage.setItem('voucher_claimed', 'true');
+
         setVoucherCode(data.code);
         setVoucherDiscount(data.discount);
         setCanClose(false);
@@ -91,7 +100,7 @@ export default function Home() {
         setVoucherStatus({ type: 'idle', message: '' });
         setEmail('');
       } else {
-        setVoucherStatus({ type: 'error', message: data.error || 'Gagal mengklaim voucher' });
+        setVoucherStatus({ type: 'error', message: data.inline_error || data.error || 'Gagal mengklaim voucher' });
       }
     } catch (err) {
       setVoucherStatus({ type: 'error', message: 'Terjadi kesalahan. Silakan coba lagi.' });

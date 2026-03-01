@@ -161,6 +161,11 @@ app.post("/api/claim-voucher", async (req, res) => {
     try {
         const cfg = await db.execute("SELECT value FROM site_config WHERE key = 'voucher_enabled'");
         if (cfg.rows.length > 0 && (cfg.rows[0] as any).value === '0') return res.status(400).json({ error: "Fitur voucher sedang tidak aktif" });
+
+        // Pengecekan 1 Email 1 Voucher
+        const checkEmail = await db.execute({ sql: "SELECT id FROM vouchers WHERE email_claimed = ?", args: [email] });
+        if (checkEmail.rows.length > 0) return res.status(400).json({ inline_error: "Email ini sudah pernah mengklaim voucher. 1 Email hanya bisa klaim 1x." });
+
         let disc = 30;
         try { const d = await db.execute("SELECT value FROM site_config WHERE key = 'voucher_default_discount'"); if (d.rows.length > 0) disc = parseInt((d.rows[0] as any).value) || 30; } catch (e) { }
         const code = 'KHANZA' + disc + '-' + Math.random().toString(36).substring(2, 8).toUpperCase();
