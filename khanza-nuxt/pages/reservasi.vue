@@ -126,14 +126,67 @@ const inputClass = "w-full px-4 py-3.5 rounded-none bg-black/50 border border-wh
         <Icon name="cil:movie" class="text-red-500" :size="24" /> Panduan Pengisian Reservasi
       </h3>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-        <!-- Video Tutorial (WebP) -->
-        <div class="relative rounded-none border border-white/10 overflow-hidden shadow-2xl group bg-black">
-          <img src="/tutorial-reservasi.webp" alt="Video Tutorial Reservasi" class="w-full h-auto opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
-          <div class="absolute bottom-4 left-4 right-4">
-            <p class="text-[10px] text-red-400 font-bold uppercase tracking-widest mb-1">Animasi 1:1</p>
-            <p class="text-white text-sm font-medium">Contoh simulasi pengisian formulir reservasi yang benar.</p>
+        <!-- Form UI Mockup -->
+        <div class="relative rounded-none border border-white/10 overflow-hidden shadow-2xl bg-[#0a0a0a] p-5 md:p-8 flex flex-col h-full pointer-events-none select-none">
+          <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center gap-3">
+              <div class="flex items-center gap-1">
+                <div class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+                <span class="text-xs text-red-500 uppercase tracking-widest font-bold">Live</span>
+              </div>
+              <span class="text-xs text-gray-500 uppercase tracking-widest">UI Mockup</span>
+            </div>
+            <!-- Mock Stepper -->
+            <div class="flex items-center gap-2">
+              <div class="w-5 h-5 rounded-none bg-red-600 text-white flex items-center justify-center text-[10px] font-bold">1</div>
+              <div class="w-3 h-[1px] bg-red-500/30"></div>
+              <div class="w-5 h-5 rounded-none bg-red-500/20 text-red-500 flex items-center justify-center text-[10px] font-bold">2</div>
+              <div class="w-3 h-[1px] bg-white/10"></div>
+              <div class="w-5 h-5 rounded-none bg-white/[0.04] text-gray-600 flex items-center justify-center text-[10px] font-bold">3</div>
+            </div>
           </div>
+          
+          <div class="space-y-6 opacity-90">
+            <!-- Step 1 Mock -->
+            <div class="space-y-3">
+              <h4 class="text-sm font-bold text-white mb-2">1. Data Pribadi</h4>
+              <div class="w-full px-4 py-3 bg-black/50 border border-white/[0.08] text-white text-sm flex items-center gap-3">
+                <Icon name="cil:user" class="text-gray-500" :size="16" /> Budi Santoso
+              </div>
+              <div class="w-full px-4 py-3 bg-black/50 border border-white/[0.08] text-white text-sm flex items-center gap-3">
+                <Icon name="cil:envelope-closed" class="text-gray-500" :size="16" /> budi@contoh.com
+              </div>
+              <div class="w-full px-4 py-3 bg-black/50 border border-white/[0.08] text-white text-sm flex items-center gap-3">
+                <Icon name="cil:phone" class="text-gray-500" :size="16" /> 081234567890
+              </div>
+            </div>
+
+            <!-- Step 2 Mock -->
+            <div class="space-y-3">
+              <h4 class="text-sm font-bold text-white mb-2 mt-4">2. Kendaraan & Layanan</h4>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="w-full px-4 py-3 bg-black/50 border border-white/[0.08] text-white text-sm">Honda</div>
+                <div class="w-full px-4 py-3 bg-black/50 border border-white/[0.08] text-white text-sm">Brio</div>
+              </div>
+              <div class="w-full px-4 py-3 bg-black/50 border border-white/[0.08] text-white text-sm flex items-center gap-3">
+                <Icon name="cil:car-alt" class="text-gray-500" :size="16" /> Repaint Body Full
+              </div>
+            </div>
+
+            <!-- Step 3 Mock -->
+            <div class="space-y-3">
+              <h4 class="text-sm font-bold text-white mb-2 mt-4">3. Jadwal & Konfirmasi</h4>
+              <div class="w-full px-4 py-3 bg-black/50 border border-white/[0.08] text-white text-sm flex items-center gap-3">
+                <Icon name="cil:calendar" class="text-gray-500" :size="16" /> Besok, 09:00 WIB
+              </div>
+              <div class="w-full px-4 py-3.5 bg-red-600 text-white text-sm font-bold flex items-center justify-center gap-2 mt-4 shadow-[0_0_15px_rgba(220,38,38,0.2)]">
+                Konfirmasi Reservasi <Icon name="cil:check-circle" :size="16" />
+              </div>
+            </div>
+          </div>
+          
+          <!-- Fade out overlay at bottom to simulate scroll/cut-off -->
+          <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent"></div>
         </div>
         
         <!-- Step by Step Explanation -->
