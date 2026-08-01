@@ -2,8 +2,12 @@
 import { ref, onMounted } from 'vue';
 
 useSeoMeta({
-  title: 'Beranda',
-  description: 'Repaint Mobil Premium & Detailing. Kami menggabungkan teknologi canggih dengan keahlian pengrajin untuk hasil yang tak tertandingi.'
+  title: 'Beranda - Khanza Repaint',
+  description: 'Bengkel spesialis cat mobil, body repair, dan premium detailing di Malang. Kami mengembalikan pesona mobil Anda seperti baru dengan material premium.',
+  ogTitle: 'Khanza Repaint - Premium Auto Detailing & Body Repair',
+  ogDescription: 'Bengkel spesialis cat mobil, body repair, dan premium detailing di Malang. Kami mengembalikan pesona mobil Anda seperti baru dengan material premium.',
+  ogImage: '/logo-baru.png',
+  twitterCard: 'summary_large_image',
 });
 
 const settings = useSettings();

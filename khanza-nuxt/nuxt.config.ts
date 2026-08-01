@@ -19,6 +19,13 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
+      htmlAttrs: { lang: 'id' },
+      meta: [
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'keywords', content: 'khanza repaint, bengkel cat mobil, body repair malang, detailing mobil, poles mobil malang, bengkel mobil karang ploso, nano ceramic coating' },
+        { name: 'author', content: 'Khanza Repaint' },
+        { name: 'robots', content: 'index, follow' },
+      ],
       link: [
         { rel: 'icon', type: 'image/png', href: '/logo-baru.png' }
       ]
@@ -27,7 +34,7 @@ export default defineNuxtConfig({
   site: {
     url: 'https://khanzarepaint.web.id',
     name: 'Khanza Repaint',
-    description: 'Premium automotive painting and detailing services.',
+    description: 'Bengkel spesialis cat mobil, body repair, dan premium detailing di Malang. Kami mengembalikan pesona mobil Anda seperti baru dengan material premium.',
     defaultLocale: 'id',
   },
   runtimeConfig: {

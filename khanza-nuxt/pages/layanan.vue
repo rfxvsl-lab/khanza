@@ -2,8 +2,11 @@
 import { ref, onMounted } from 'vue';
 
 useSeoMeta({
-  title: 'Layanan Kami',
-  description: 'Temukan rangkaian layanan finishing otomotif premium kami. Setiap kendaraan kami perlakukan sebagai mahakarya.'
+  title: 'Layanan - Khanza Repaint',
+  description: 'Daftar layanan bengkel cat mobil dan auto detailing premium di Malang. Nano ceramic coating, paint protection, dan body repair.',
+  ogImage: '/logo-baru.png',
+  ogTitle: 'Layanan - Khanza Repaint',
+  twitterCard: 'summary_large_image',
 });
 
 useHead({
