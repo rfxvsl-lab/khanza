@@ -155,51 +155,69 @@ const formatRupiah = (value: number | string) => {
 
     <!-- Detail Modal -->
     <Transition name="fade">
-      <div v-if="selectedCar" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4" @click="selectedCar = null">
+      <div v-if="selectedCar" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[100] flex items-center justify-center p-4 md:p-6" @click="selectedCar = null">
         <div
           v-motion
-          :initial="{ scale: 0.95, opacity: 0 }"
-          :enter="{ scale: 1, opacity: 1 }"
-          class="bg-[#0a0a0a] border border-white/[0.08] rounded-none max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+          :initial="{ scale: 0.95, opacity: 0, y: 20 }"
+          :enter="{ scale: 1, opacity: 1, y: 0, transition: { duration: 400, type: 'spring' } }"
+          class="relative bg-[#050505] border border-white/[0.1] shadow-2xl rounded-none max-w-4xl w-full max-h-[90vh] overflow-y-auto"
           @click.stop
         >
-          <div class="relative aspect-video">
-            <img :src="selectedCar.images" :alt="selectedCar.car_model" class="w-full h-full object-cover rounded-t-2xl" referrerpolicy="no-referrer" />
+          <!-- Hero Image Area -->
+          <div class="relative w-full h-[300px] md:h-[450px]">
+            <img :src="selectedCar.images" :alt="selectedCar.car_model" class="w-full h-full object-cover" referrerpolicy="no-referrer" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent"></div>
+            
+            <!-- Close Button -->
             <button
               @click="selectedCar = null"
-              class="absolute top-4 right-4 p-2 rounded-none bg-black/50 backdrop-blur-md text-white hover:bg-red-600 transition-colors border border-white/10"
+              class="absolute top-4 right-4 md:top-6 md:right-6 w-12 h-12 flex items-center justify-center rounded-none bg-black/40 backdrop-blur-md text-white hover:bg-red-600 transition-colors border border-white/20 group z-10"
             >
-              <Icon name="cil:x" :size="18" />
+              <Icon name="cil:x" :size="24" class="group-hover:rotate-90 transition-transform duration-300" />
             </button>
-            <div class="absolute bottom-4 left-4 px-3 py-1.5 rounded-none bg-black/50 backdrop-blur-md text-white text-sm font-bold border border-white/10">
-              {{ selectedCar.year }}
+            
+            <!-- Floating Header Info -->
+            <div class="absolute bottom-6 md:bottom-8 left-6 md:left-10 right-6 md:right-10 flex flex-col md:flex-row md:justify-between md:items-end gap-4 z-10">
+              <div>
+                <div class="inline-block px-3 py-1 mb-3 bg-red-600/20 backdrop-blur-md border border-red-500/30 text-red-400 text-xs font-bold tracking-widest uppercase">
+                  Tersedia
+                </div>
+                <h2 class="text-3xl md:text-5xl font-bold text-white tracking-tight drop-shadow-lg">{{ selectedCar.car_model }}</h2>
+              </div>
+              <div class="md:text-right">
+                <span class="block text-xs text-gray-300 mb-1 uppercase tracking-widest">Harga Penawaran</span>
+                <span class="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">{{ formatRupiah(selectedCar.price) }}</span>
+              </div>
             </div>
           </div>
 
-          <div class="p-6 md:p-8">
-            <div class="flex justify-between items-start mb-4">
-              <h2 class="text-2xl font-bold text-white">{{ selectedCar.car_model }}</h2>
-              <span class="text-2xl font-bold text-red-500">{{ formatRupiah(selectedCar.price) }}</span>
-            </div>
-            <p class="text-gray-400 leading-relaxed mb-6">{{ selectedCar.description }}</p>
+          <!-- Content Area -->
+          <div class="p-6 md:p-10">
+            <p class="text-gray-300 leading-relaxed mb-10 text-lg md:text-xl border-l-2 border-red-500 pl-5 max-w-3xl">
+              {{ selectedCar.description }}
+            </p>
 
-            <div class="grid grid-cols-3 gap-3 mb-6">
-              <div class="p-3 rounded-none bg-white/[0.03] border border-white/[0.06] text-center">
-                <p class="text-gray-500 text-xs mb-1">Tahun</p>
-                <p class="text-white font-semibold text-sm">{{ selectedCar.year }}</p>
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+              <div class="p-6 rounded-none bg-white/[0.02] border border-white/[0.04] flex flex-col items-center justify-center text-center group hover:bg-white/[0.05] transition-colors">
+                <Icon name="cil:calendar" :size="28" class="text-red-500 mb-4 opacity-70 group-hover:opacity-100 transition-opacity" />
+                <p class="text-gray-500 text-[11px] uppercase tracking-widest mb-2">Tahun Produksi</p>
+                <p class="text-white font-bold text-xl">{{ selectedCar.year }}</p>
               </div>
-              <div class="p-3 rounded-none bg-white/[0.03] border border-white/[0.06] text-center">
-                <p class="text-gray-500 text-xs mb-1">Status</p>
-                <p class="text-white font-semibold text-sm">Tersedia</p>
+              <div class="p-6 rounded-none bg-white/[0.02] border border-white/[0.04] flex flex-col items-center justify-center text-center group hover:bg-white/[0.05] transition-colors">
+                <Icon name="cil:check-circle" :size="28" class="text-red-500 mb-4 opacity-70 group-hover:opacity-100 transition-opacity" />
+                <p class="text-gray-500 text-[11px] uppercase tracking-widest mb-2">Status Kendaraan</p>
+                <p class="text-white font-bold text-xl">Siap Pakai</p>
               </div>
-              <div class="p-3 rounded-none bg-white/[0.03] border border-white/[0.06] text-center">
-                <p class="text-gray-500 text-xs mb-1">Kondisi</p>
-                <p class="text-white font-semibold text-sm">Sangat Baik</p>
+              <div class="p-6 rounded-none bg-white/[0.02] border border-white/[0.04] flex flex-col items-center justify-center text-center group hover:bg-white/[0.05] transition-colors">
+                <Icon name="cil:diamond" :size="28" class="text-red-500 mb-4 opacity-70 group-hover:opacity-100 transition-opacity" />
+                <p class="text-gray-500 text-[11px] uppercase tracking-widest mb-2">Kondisi Eksterior</p>
+                <p class="text-white font-bold text-xl">Sangat Baik</p>
               </div>
             </div>
 
-            <button class="w-full py-3.5 rounded-none bg-red-600 text-white font-semibold hover:shadow-[0_0_20px_rgba(220,38,38,0.3)] transition-all">
-              Tanyakan Kendaraan Ini
+            <button class="w-full py-5 rounded-none bg-white/[0.03] border border-white/[0.1] hover:bg-red-600 hover:border-red-600 text-white font-bold tracking-widest uppercase transition-all duration-300 flex items-center justify-center gap-3 group text-sm">
+              Tanyakan Kendaraan Ini <Icon name="cil:arrow-right" :size="20" class="group-hover:translate-x-2 transition-transform duration-300" />
             </button>
           </div>
         </div>
