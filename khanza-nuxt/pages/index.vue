@@ -344,59 +344,61 @@ const processes = [
       </section>
 
       <!-- Voucher Success Modal -->
-      <Transition name="fade">
-        <div v-if="showVoucherModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
-          <div
-            v-motion
-            :initial="{ opacity: 0, scale: 0.9 }"
-            :enter="{ opacity: 1, scale: 1 }"
-            class="bg-[#111] border border-white/10 p-8 rounded-none w-full max-w-md text-center relative"
-          >
-            <button
-              v-if="canClose"
-              @click="showVoucherModal = false"
-              class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+      <Teleport to="body">
+        <Transition name="fade">
+          <div v-if="showVoucherModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+            <div
+              v-motion
+              :initial="{ opacity: 0, scale: 0.9 }"
+              :enter="{ opacity: 1, scale: 1 }"
+              class="bg-[#111] border border-white/10 p-8 rounded-none w-full max-w-md text-center relative"
             >
-              <Icon name="cil:x" :size="20" />
-            </button>
+              <button
+                v-if="canClose"
+                @click="showVoucherModal = false"
+                class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+              >
+                <Icon name="cil:x" :size="20" />
+              </button>
 
-            <div class="w-16 h-16 rounded-none bg-green-500/10 text-green-500 flex items-center justify-center mx-auto mb-5">
-              <Icon name="cil:check-circle" :size="32" />
+              <div class="w-16 h-16 rounded-none bg-green-500/10 text-green-500 flex items-center justify-center mx-auto mb-5">
+                <Icon name="cil:check-circle" :size="32" />
+              </div>
+
+              <h3 class="text-2xl font-bold text-white mb-2">Voucher Berhasil Diklaim!</h3>
+              <p class="text-gray-400 mb-6">Anda mendapatkan diskon <span class="text-red-500 font-bold">{{ voucherDiscount }}%</span></p>
+
+              <div class="bg-black/50 border border-red-500/30 rounded-none p-5 mb-4">
+                <p class="text-xs text-gray-500 uppercase tracking-wider mb-2">Kode Voucher Anda</p>
+                <p class="text-3xl font-mono font-bold text-white tracking-widest">{{ voucherCode }}</p>
+              </div>
+
+              <button
+                @click="copyToClipboard"
+                :class="[
+                  'w-full py-3.5 rounded-none font-bold flex items-center justify-center gap-2 transition-all',
+                  copied ? 'bg-green-600 text-white' : 'bg-red-600 hover:bg-red-700 text-white'
+                ]"
+              >
+                <template v-if="copied"><Icon name="cil:check" :size="18" /> Kode Berhasil Disalin!</template>
+                <template v-else><Icon name="cil:copy" :size="18" /> Salin Kode Voucher</template>
+              </button>
+
+              <div class="mt-4 p-3 rounded-none bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 text-xs text-left">
+                ⚠️ <strong>Penting:</strong> Simpan kode ini! Salin atau screenshot sebelum menutup. Kode ini hanya ditampilkan sekali dan digunakan saat pemesanan.
+              </div>
+
+              <button
+                v-if="!canClose"
+                @click="canClose = true"
+                class="mt-4 text-sm text-gray-500 hover:text-gray-300 transition-colors underline"
+              >
+                Saya Sudah Menyimpan Kode
+              </button>
             </div>
-
-            <h3 class="text-2xl font-bold text-white mb-2">Voucher Berhasil Diklaim!</h3>
-            <p class="text-gray-400 mb-6">Anda mendapatkan diskon <span class="text-red-500 font-bold">{{ voucherDiscount }}%</span></p>
-
-            <div class="bg-black/50 border border-red-500/30 rounded-none p-5 mb-4">
-              <p class="text-xs text-gray-500 uppercase tracking-wider mb-2">Kode Voucher Anda</p>
-              <p class="text-3xl font-mono font-bold text-white tracking-widest">{{ voucherCode }}</p>
-            </div>
-
-            <button
-              @click="copyToClipboard"
-              :class="[
-                'w-full py-3.5 rounded-none font-bold flex items-center justify-center gap-2 transition-all',
-                copied ? 'bg-green-600 text-white' : 'bg-red-600 hover:bg-red-700 text-white'
-              ]"
-            >
-              <template v-if="copied"><Icon name="cil:check" :size="18" /> Kode Berhasil Disalin!</template>
-              <template v-else><Icon name="cil:copy" :size="18" /> Salin Kode Voucher</template>
-            </button>
-
-            <div class="mt-4 p-3 rounded-none bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 text-xs text-left">
-              ⚠️ <strong>Penting:</strong> Simpan kode ini! Salin atau screenshot sebelum menutup. Kode ini hanya ditampilkan sekali dan digunakan saat pemesanan.
-            </div>
-
-            <button
-              v-if="!canClose"
-              @click="canClose = true"
-              class="mt-4 text-sm text-gray-500 hover:text-gray-300 transition-colors underline"
-            >
-              Saya Sudah Menyimpan Kode
-            </button>
           </div>
-        </div>
-      </Transition>
+        </Transition>
+      </Teleport>
     </div>
   </div>
 </template>
