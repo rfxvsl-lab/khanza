@@ -26,20 +26,6 @@ onMounted(async () => {
   }
 });
 
-const getIcon = (name: string) => {
-  const iconMap: Record<string, string> = {
-    'ArrowRight': 'cil:arrow-right',
-    'ShieldCheck': 'cil:shield-alt',
-    'Sparkles': 'cil:diamond',
-    'Droplets': 'cil:drop',
-    'CheckCircle': 'cil:check-circle',
-    'Check': 'cil:check',
-    'ClipboardList': 'cil:clipboard',
-    'Wrench': 'cil:settings',
-    'Car': 'cil:car-alt'
-  };
-  return iconMap[name] || (name.includes(':') ? name : 'cil:car-alt');
-};
 
 const formatRupiah = (value: number | string) => {
   const num = typeof value === 'string' ? parseFloat(value) : value;
@@ -69,66 +55,52 @@ const formatRupiah = (value: number | string) => {
       </p>
     </div>
 
-    <div v-if="loading" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div v-for="i in 4" :key="i" class="p-8 rounded-none bg-white/[0.02] border border-white/[0.06]">
-        <div class="flex justify-between mb-6">
-          <UiSkeleton type="avatar" class="w-14 h-14 rounded-none" />
-          <UiSkeleton type="text" class="w-24 h-8" />
-        </div>
-        <UiSkeleton type="text" class="w-3/4 h-6 mb-4" />
+    <div v-if="loading" class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+      <div v-for="i in 5" :key="i" :class="['min-h-[320px] bg-white/[0.02] border border-white/[0.06] p-6 md:p-8 flex flex-col justify-end', i % 5 === 1 ? 'md:col-span-2' : 'md:col-span-1']">
+        <UiSkeleton type="text" class="w-24 h-6 mb-4" />
+        <UiSkeleton type="text" class="w-3/4 h-8 mb-3" />
         <UiSkeleton type="text" class="w-full h-4 mb-2" />
-        <UiSkeleton type="text" class="w-5/6 h-4 mb-6" />
-        <div class="space-y-3 mb-8">
-           <UiSkeleton type="text" class="w-1/2 h-4" />
-           <UiSkeleton type="text" class="w-1/2 h-4" />
-           <UiSkeleton type="text" class="w-1/2 h-4" />
-        </div>
-        <UiSkeleton class="w-full h-12 rounded-none" />
+        <UiSkeleton type="text" class="w-2/3 h-4" />
       </div>
     </div>
 
-    <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div
+    <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+      <NuxtLink
         v-for="(service, idx) in services"
         :key="service.id"
+        :to="`/reservasi?service=${service.id}`"
         v-motion
         :initial="{ opacity: 0, y: 30 }"
-        :visibleOnce="{ opacity: 1, y: 0, transition: { duration: 500, delay: idx * 100 } }"
-        class="group relative rounded-none overflow-hidden bg-[#050505] border border-white/[0.06] hover:border-white/[0.15] transition-all duration-500"
+        :visibleOnce="{ opacity: 1, y: 0, transition: { duration: 500, delay: (idx % 3) * 100 } }"
+        :class="[
+          'group block relative overflow-hidden bg-[#050505] border border-white/[0.06] hover:border-white/[0.15] transition-all duration-700',
+          idx % 5 === 0 ? 'md:col-span-2' : 'md:col-span-1'
+        ]"
       >
-        <!-- Service Image Header -->
-        <div class="h-64 overflow-hidden relative w-full">
-           <img v-if="service.image_url" :src="service.image_url" :alt="service.title" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-           <div v-else class="absolute inset-0 w-full h-full bg-white/[0.02]"></div>
-           <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent"></div>
+        <!-- Background Image Overlay -->
+        <div class="absolute inset-0 z-0">
+          <img v-if="service.image_url" :src="service.image_url" :alt="service.title" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-30 group-hover:opacity-50" />
+          <div v-else class="w-full h-full bg-white/[0.02]"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent"></div>
         </div>
 
-        <div class="p-8 relative -mt-20 z-10">
-          <div class="flex items-start justify-between mb-6">
-            <div class="w-14 h-14 rounded-none bg-black/80 backdrop-blur-md border border-white/[0.1] flex items-center justify-center transition-all duration-300 group-hover:border-red-500/50">
-              <Icon :name="getIcon(service.icon_name)" size="26" class="text-red-500" />
+        <!-- Content -->
+        <div class="relative z-10 h-full p-6 md:p-8 flex flex-col justify-end min-h-[320px]">
+          <div class="mt-auto">
+            <span class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-widest text-white/80 uppercase border border-white/10 backdrop-blur-sm bg-black/40">
+              {{ formatRupiah(service.price) }}
+            </span>
+            <h3 class="text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight group-hover:text-red-500 transition-colors duration-500">{{ service.title }}</h3>
+            <p class="text-gray-400 text-sm leading-relaxed max-w-lg mb-6 line-clamp-3">
+              {{ service.description }}
+            </p>
+            
+            <div class="flex items-center text-xs font-bold tracking-widest text-white uppercase opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+              Reservasi Sekarang <span class="ml-2">→</span>
             </div>
-            <span class="text-xl font-bold text-white bg-black/80 backdrop-blur-md px-4 py-2 border border-white/[0.1]">{{ formatRupiah(service.price) }}</span>
           </div>
-
-          <h3 class="text-2xl font-bold text-white mb-3 uppercase tracking-wide group-hover:text-red-500 transition-colors duration-300">{{ service.title }}</h3>
-          <p class="text-gray-400 mb-6 leading-relaxed text-sm">{{ service.description }}</p>
-
-          <ul class="space-y-3 mb-8">
-            <li v-for="feature in ['Material premium', 'Teknisi profesional', 'Kualitas terjamin']" :key="feature" class="flex items-center gap-3 text-gray-500 text-sm">
-              <Icon name="cil:check" :size="14" class="text-red-500 shrink-0" />
-              {{ feature }}
-            </li>
-          </ul>
-
-          <NuxtLink
-            :to="`/reservasi?service=${service.id}`"
-            class="flex items-center justify-center gap-2 w-full py-4 rounded-none bg-white/[0.04] border border-white/[0.08] hover:bg-red-600 hover:border-red-600 text-white font-bold text-sm tracking-widest uppercase transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(220,38,38,0.2)]"
-          >
-            Pesan Layanan Ini <Icon name="cil:arrow-right" :size="16" />
-          </NuxtLink>
         </div>
-      </div>
+      </NuxtLink>
     </div>
 
     <!-- Instagram Embed Section -->
