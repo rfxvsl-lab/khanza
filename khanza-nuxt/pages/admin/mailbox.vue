@@ -157,7 +157,7 @@ const formatDate = (dateStr: string) => {
             <span class="text-xs text-gray-500">{{ formatDate(selectedMessage.msgType === 'inbox' ? selectedMessage.date : selectedMessage.sent_at) }}</span>
           </div>
 
-          <div v-if="selectedMessage.msgType === 'inbox'" class="text-sm text-gray-300 leading-relaxed bg-black/50 p-6 border border-white/5">
+          <div v-if="selectedMessage.msgType === 'inbox' && selectedMessage.type === 'booking'" class="text-sm text-gray-300 leading-relaxed bg-black/50 p-6 border border-white/5">
             <p class="text-red-400 font-bold mb-4">Informasi Reservasi:</p>
             <table class="w-full text-left border-collapse">
               <tbody>
@@ -170,6 +170,11 @@ const formatDate = (dateStr: string) => {
             </table>
           </div>
           
+          <div v-else-if="selectedMessage.msgType === 'inbox' && selectedMessage.type === 'email'" class="text-sm text-gray-300 leading-relaxed bg-black/50 p-6 border border-white/5">
+            <div v-if="selectedMessage.body_html" v-html="selectedMessage.body_html" class="prose prose-invert max-w-none"></div>
+            <div v-else class="whitespace-pre-wrap">{{ selectedMessage.body_text }}</div>
+          </div>
+
           <div v-else class="text-sm text-gray-300 leading-relaxed whitespace-pre-wrap">
             {{ selectedMessage.body }}
           </div>

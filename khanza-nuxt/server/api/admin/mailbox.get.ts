@@ -29,8 +29,30 @@ export default defineEventHandler(async (event) => {
     originalData: row
   }));
 
+  // Get Inbound Emails
+  const inboundRes = await db.execute(`
+    SELECT * FROM inbound_emails ORDER BY received_at DESC LIMIT 50
+  `);
+
+  // Map inbound emails to inbox format
+  const inboundInbox = inboundRes.rows.map((row: any) => ({
+    id: `email-${row.id}`,
+    sender_name: row.sender_name,
+    sender_email: row.sender_email,
+    subject: row.subject,
+    date: row.received_at,
+    type: 'email',
+    body_text: row.body_text,
+    body_html: row.body_html
+  }));
+
+  // Combine and sort
+  const combinedInbox = [...inboundInbox, ...inbox].sort((a, b) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
+
   return {
     sent: sentEmailsRes.rows,
-    inbox: inbox
+    inbox: combinedInbox
   };
 });
