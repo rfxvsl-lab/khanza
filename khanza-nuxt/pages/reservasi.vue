@@ -115,6 +115,61 @@ const inputClass = "w-full px-4 py-3.5 rounded-none bg-black/50 border border-wh
       </p>
     </div>
 
+    <!-- Panduan Tutorial Reservasi -->
+    <div
+      v-motion
+      :initial="{ opacity: 0, y: 20 }"
+      :enter="{ opacity: 1, y: 0, transition: { duration: 600, delay: 100 } }"
+      class="mb-12 bg-white/[0.02] border border-white/[0.06] p-6 lg:p-8 rounded-none"
+    >
+      <h3 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
+        <Icon name="cil:movie" class="text-red-500" :size="24" /> Panduan Pengisian Reservasi
+      </h3>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+        <!-- Video Tutorial (WebP) -->
+        <div class="relative rounded-none border border-white/10 overflow-hidden shadow-2xl group bg-black">
+          <img src="/tutorial-reservasi.webp" alt="Video Tutorial Reservasi" class="w-full h-auto opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none"></div>
+          <div class="absolute bottom-4 left-4 right-4">
+            <p class="text-[10px] text-red-400 font-bold uppercase tracking-widest mb-1">Animasi 1:1</p>
+            <p class="text-white text-sm font-medium">Contoh simulasi pengisian formulir reservasi yang benar.</p>
+          </div>
+        </div>
+        
+        <!-- Step by Step Explanation -->
+        <div class="space-y-6">
+          <div class="flex gap-4 group">
+            <div class="w-8 h-8 rounded-none bg-red-600/10 text-red-500 flex items-center justify-center font-bold shrink-0 border border-red-500/20 group-hover:bg-red-600/30 transition-colors">1</div>
+            <div>
+              <h4 class="text-white font-bold mb-1">Data Pribadi</h4>
+              <p class="text-sm text-gray-400 leading-relaxed">Isi <strong>Nama Lengkap</strong>, <strong>Alamat Email</strong>, dan <strong>Nomor Telepon/WA</strong> Anda. Pastikan email dan nomor HP aktif agar tim kami dapat menghubungi Anda.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 group">
+            <div class="w-8 h-8 rounded-none bg-red-600/10 text-red-500 flex items-center justify-center font-bold shrink-0 border border-red-500/20 group-hover:bg-red-600/30 transition-colors">2</div>
+            <div>
+              <h4 class="text-white font-bold mb-1">Kendaraan & Layanan</h4>
+              <p class="text-sm text-gray-400 leading-relaxed">Masukkan detail kendaraan Anda (Merek, Model, Tahun) dan pilih <strong>Jenis Layanan</strong> dari menu dropdown (misal: <em>Repaint Body</em>).</p>
+            </div>
+          </div>
+          <div class="flex gap-4 group">
+            <div class="w-8 h-8 rounded-none bg-red-600/10 text-red-500 flex items-center justify-center font-bold shrink-0 border border-red-500/20 group-hover:bg-red-600/30 transition-colors">3</div>
+            <div>
+              <h4 class="text-white font-bold mb-1">Jadwal & Voucher</h4>
+              <p class="text-sm text-gray-400 leading-relaxed">Pilih <strong>Tanggal</strong> dan <strong>Waktu</strong> kedatangan Anda. Jika memiliki kode Voucher, masukkan kodenya dan klik <strong>Validasi</strong> untuk mendapatkan diskon khusus.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 group">
+            <div class="w-8 h-8 rounded-none bg-red-600/10 text-red-500 flex items-center justify-center font-bold shrink-0 border border-red-500/20 group-hover:bg-red-600/30 transition-colors">4</div>
+            <div>
+              <h4 class="text-white font-bold mb-1">Konfirmasi Akhir</h4>
+              <p class="text-sm text-gray-400 leading-relaxed">Periksa kembali ringkasan data. Jika sudah benar, klik tombol <strong>Konfirmasi Reservasi</strong>. Selesai! Tim kami akan segera menindaklanjuti permintaan Anda.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
       <div class="lg:col-span-2">
         <div
