@@ -142,7 +142,7 @@ const formatRupiah = (value: number) => {
       <Icon name="cil:reload" class="animate-spin text-red-500" :size="48" />
     </div>
 
-    <div v-else class="bg-white/5 border border-white/10 rounded-none overflow-hidden">
+    <div v-else class="bg-white/5 border border-white/10 rounded-none overflow-x-auto">
       <table class="w-full text-left border-collapse">
         <thead>
           <tr class="bg-white/5 border-b border-white/10">

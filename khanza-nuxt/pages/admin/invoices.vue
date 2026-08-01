@@ -292,7 +292,7 @@ const inputClass = "w-full px-4 py-2.5 bg-black/50 border border-white/10 rounde
       <div v-if="loading" class="flex justify-center py-20">
         <Icon name="cil:reload" class="animate-spin text-red-500" :size="48" />
       </div>
-      <div v-else class="bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-xl">
+      <div v-else class="bg-white/5 border border-white/10 rounded-xl overflow-x-auto shadow-xl">
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse min-w-[800px]">
             <thead>
@@ -431,7 +431,7 @@ const inputClass = "w-full px-4 py-2.5 bg-black/50 border border-white/10 rounde
 
       <!-- STEP 2: Editor Faktur -->
       <div v-if="currentStep === 2" class="animate-fade-in space-y-6">
-        <div class="bg-white/5 border border-white/10 rounded-xl overflow-hidden shadow-xl">
+        <div class="bg-white/5 border border-white/10 rounded-xl overflow-x-auto shadow-xl">
           <div class="bg-black/50 px-6 py-4 border-b border-white/10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div class="flex items-center gap-3">
               <div class="p-2 bg-red-600/20 text-red-500 rounded-lg">
