@@ -1,0 +1,47 @@
+{
+  "name": "khanza-nuxt",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.17.4",
+    "@lucide/vue": "^1.28.0",
+    "@nuxt/icon": "^2.4.1",
+    "@nuxt/image": "^2.1.0",
+    "@nuxtjs/seo": "^5.3.6",
+    "@pinia/nuxt": "^1.0.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "@takumi-rs/core": "^2.5.4",
+    "@vueuse/core": "^14.4.0",
+    "@vueuse/motion": "^3.0.3",
+    "apexcharts": "^6.6.1",
+    "bcryptjs": "^3.0.3",
+    "cloudinary": "^2.10.0",
+    "date-fns": "^4.4.0",
+    "gsap": "^3.15.0",
+    "jsonwebtoken": "^9.0.3",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.8",
+    "node-cron": "^4.6.0",
+    "nuxt": "^4.5.1",
+    "pinia": "^4.0.2",
+    "tailwind-merge": "^3.6.0",
+    "tailwindcss": "^4.3.3",
+    "uuid": "^14.0.1",
+    "vue": "^3.5.40",
+    "vue-router": "^5.2.0",
+    "vue3-apexcharts": "^1.11.1",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@iconify-json/cil": "^1.2.3",
+    "@types/node-cron": "^3.0.11",
+    "@types/uuid": "^10.0.0"
+  }
+}

@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --color-lambo: #FFC000;
+  --color-lambo-dark: #917300;
+  --color-charcoal: #181818;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply uppercase tracking-wider leading-tight;
+  }
+}
+
