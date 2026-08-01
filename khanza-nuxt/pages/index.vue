@@ -210,14 +210,15 @@ const processes = [
           v-motion
           :initial="{ opacity: 0, y: 30 }"
           :visibleOnce="{ opacity: 1, y: 0, transition: { duration: 600 } }"
-          class="mb-16"
+          class="mb-20 text-center"
         >
-          <div class="flex items-center gap-2 mb-4">
+          <div class="flex items-center justify-center gap-2 mb-4">
             <div class="w-8 h-[2px] bg-red-500" />
             <span class="text-red-500 text-sm font-semibold tracking-wider uppercase">Mengapa Memilih Kami</span>
+            <div class="w-8 h-[2px] bg-red-500" />
           </div>
-          <h2 class="text-3xl md:text-4xl font-bold mb-3">Keahlian Bertemu Teknologi</h2>
-          <p class="text-gray-500 max-w-xl">Kami menggabungkan teknologi canggih dengan keahlian pengrajin untuk menghasilkan hasil yang tak tertandingi.</p>
+          <h2 class="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Keahlian Bertemu Teknologi</h2>
+          <p class="text-gray-500 max-w-xl mx-auto">Kami menggabungkan teknologi canggih dengan keahlian pengrajin untuk menghasilkan hasil yang tak tertandingi.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
