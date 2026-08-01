@@ -34,7 +34,7 @@ export const sendMail = async (options: { to?: string; bcc?: string; subject: st
     });
   }
 
-  const defaultFrom = config.smtpFrom || config.smtpUser || 'admin@khanzarepaint.web.id';
+  const defaultFrom = config.smtpFrom || config.smtpUser || 'halo@khanzarepaint.web.id';
   
   try {
     const info = await transporter.sendMail({

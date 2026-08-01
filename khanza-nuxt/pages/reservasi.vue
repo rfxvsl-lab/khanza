@@ -301,7 +301,7 @@ const inputClass = "w-full px-4 py-3.5 rounded-none bg-black/50 border border-wh
           <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Kontak</h3>
           <ul class="space-y-3">
             <li class="flex items-center gap-3 text-gray-500 text-sm"><Icon name="cil:phone" :size="14" class="text-red-500/70 shrink-0" /> 0881-0364-92931</li>
-            <li class="flex items-center gap-3 text-gray-500 text-sm"><Icon name="cil:envelope-closed" :size="14" class="text-red-500/70 shrink-0" /> admin@khanzarepaint.com</li>
+            <li class="flex items-center gap-3 text-gray-500 text-sm"><Icon name="cil:envelope-closed" :size="14" class="text-red-500/70 shrink-0" /> halo@khanzarepaint.web.id</li>
             <li class="flex items-start gap-3 text-gray-500 text-sm leading-relaxed"><Icon name="cil:location-pin" :size="14" class="text-red-500/70 shrink-0 mt-1" /> Jl. Cokroaminoto RW V No.18, Mojosari, Ngenep, Kec. Karang Ploso, Kabupaten Malang, Jawa Timur 65152</li>
           </ul>
         </div>

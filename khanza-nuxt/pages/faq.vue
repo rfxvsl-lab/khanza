@@ -128,9 +128,9 @@ const toggleFaq = (idx: number) => {
               <Icon name="cil:phone" :size="16" class="text-red-500" />
               0881-0364-92931
             </a>
-            <a href="mailto:admin@khanzarepaint.com" class="flex items-center gap-3 text-sm text-white hover:text-red-400 transition-colors">
-              <Icon name="cil:envelope-closed" :size="16" class="text-red-500/70" />
-              admin@khanzarepaint.com
+            <a href="mailto:halo@khanzarepaint.web.id" class="flex items-center gap-3 text-sm text-white hover:text-red-400 transition-colors">
+              <Icon name="cil:envelope-closed" :size="20" class="text-red-500" />
+              halo@khanzarepaint.web.id
             </a>
           </div>
         </div>
