@@ -25,7 +25,7 @@ export default defineNuxtConfig({
     }
   },
   site: {
-    url: 'https://khanzarepaint.com',
+    url: 'https://khanzarepaint.web.id',
     name: 'Khanza Repaint',
     description: 'Premium automotive painting and detailing services.',
     defaultLocale: 'id',
