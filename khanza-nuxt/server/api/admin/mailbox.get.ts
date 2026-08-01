@@ -1,9 +1,16 @@
 import { db } from '~/server/utils/db';
-import { requireAuth } from '~/server/utils/auth';
+import { verifyToken } from '~/server/utils/auth';
 
 export default defineEventHandler(async (event) => {
-  await requireAuth(event);
-
+  const authHeader = getHeader(event, 'authorization');
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    throw createError({ statusCode: 401, statusMessage: 'Unauthorized' });
+  }
+  try {
+    verifyToken(authHeader.split(' ')[1]);
+  } catch (err) {
+    throw createError({ statusCode: 401, statusMessage: 'Invalid token' });
+  }
   // Get Sent Emails
   const sentEmailsRes = await db.execute(`
     SELECT * FROM sent_emails ORDER BY sent_at DESC LIMIT 100

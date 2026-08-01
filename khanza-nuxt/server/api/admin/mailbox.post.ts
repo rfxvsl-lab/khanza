@@ -1,9 +1,17 @@
 import { db } from '~/server/utils/db';
-import { requireAuth } from '~/server/utils/auth';
+import { verifyToken } from '~/server/utils/auth';
 import { sendMail } from '~/server/utils/mailer';
 
 export default defineEventHandler(async (event) => {
-  await requireAuth(event);
+  const authHeader = getHeader(event, 'authorization');
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    throw createError({ statusCode: 401, statusMessage: 'Unauthorized' });
+  }
+  try {
+    verifyToken(authHeader.split(' ')[1]);
+  } catch (err) {
+    throw createError({ statusCode: 401, statusMessage: 'Invalid token' });
+  }
   const body = await readBody(event);
   
   const { action, to, subject, message } = body;
