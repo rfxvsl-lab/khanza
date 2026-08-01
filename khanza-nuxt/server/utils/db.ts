@@ -160,6 +160,17 @@ export async function setupDb() {
     )
   `);
 
+  await db.execute(`
+    CREATE TABLE IF NOT EXISTS sent_emails (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      to_email TEXT,
+      subject TEXT,
+      type TEXT,
+      body TEXT,
+      sent_at TEXT DEFAULT (datetime('now'))
+    )
+  `);
+
   try {
     await db.execute({
       sql: "INSERT INTO site_config (key, value) VALUES ('voucher_enabled', '1')",

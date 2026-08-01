@@ -25,6 +25,7 @@ const navItems = [
   { name: 'Testimoni', path: '/admin/testimonials', icon: 'cil:speech' },
   { name: 'FAQ', path: '/admin/faqs', icon: 'cil:info' },
   { name: 'Newsletter', path: '/admin/newsletters', icon: 'cil:envelope-closed' },
+  { name: 'CRM Mailbox', path: '/admin/mailbox', icon: 'cil:send' },
   { name: 'Voucher', path: '/admin/vouchers', icon: 'cil:tag' },
   { name: 'Invoice', path: '/admin/invoices', icon: 'cil:file' },
 ];
