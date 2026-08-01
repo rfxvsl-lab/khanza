@@ -21,32 +21,34 @@ const acceptCookies = () => {
 </script>
 
 <template>
-  <Transition name="toast-slide">
-    <div v-if="showCookieToast" class="fixed bottom-6 right-6 z-50 max-w-sm w-full bg-[#111] border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
-      <div class="p-5 flex flex-col gap-4">
-        <div class="flex items-start gap-3">
-          <div class="p-2 bg-red-500/20 text-red-500 rounded-full shrink-0">
-            <Icon name="cil:cookie" :size="20" />
+  <Teleport to="body">
+    <Transition name="toast-slide">
+      <div v-if="showCookieToast" class="fixed bottom-4 left-4 right-4 md:left-auto md:bottom-6 md:right-6 z-[100] md:w-[380px] bg-[#111] border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
+        <div class="p-5 flex flex-col gap-4">
+          <div class="flex items-start gap-3">
+            <div class="p-2 bg-red-500/20 text-red-500 rounded-full shrink-0">
+              <Icon name="cil:cookie" :size="20" />
+            </div>
+            <div>
+              <h4 class="font-bold text-white text-sm mb-1">Kami menggunakan Cookie 🍪</h4>
+              <p class="text-xs text-gray-400 leading-relaxed">
+                Website ini menggunakan cookie untuk memastikan Anda mendapatkan pengalaman terbaik. 
+                <NuxtLink to="/cookies" class="text-red-500 hover:underline">Pelajari lebih lanjut.</NuxtLink>
+              </p>
+            </div>
           </div>
-          <div>
-            <h4 class="font-bold text-white text-sm mb-1">Kami menggunakan Cookie 🍪</h4>
-            <p class="text-xs text-gray-400 leading-relaxed">
-              Website ini menggunakan cookie untuk memastikan Anda mendapatkan pengalaman terbaik. 
-              <NuxtLink to="/cookies" class="text-red-500 hover:underline">Pelajari lebih lanjut.</NuxtLink>
-            </p>
+          <div class="flex justify-end">
+            <button 
+              @click="acceptCookies"
+              class="px-5 py-2 bg-white text-black hover:bg-gray-200 text-xs font-bold rounded-xl transition-colors shadow"
+            >
+              Paham & Setuju
+            </button>
           </div>
-        </div>
-        <div class="flex justify-end">
-          <button 
-            @click="acceptCookies"
-            class="px-5 py-2 bg-white text-black hover:bg-gray-200 text-xs font-bold rounded-xl transition-colors shadow"
-          >
-            Paham & Setuju
-          </button>
         </div>
       </div>
-    </div>
-  </Transition>
+    </Transition>
+  </Teleport>
 </template>
 
 <style scoped>
