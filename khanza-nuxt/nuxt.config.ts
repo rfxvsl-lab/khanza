@@ -17,6 +17,13 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
+  app: {
+    head: {
+      link: [
+        { rel: 'icon', type: 'image/png', href: '/logo-baru.png' }
+      ]
+    }
+  },
   site: {
     url: 'https://khanzarepaint.com',
     name: 'Khanza Repaint',
