@@ -245,35 +245,43 @@ const processes = [
           v-motion
           :initial="{ opacity: 0, y: 30 }"
           :visibleOnce="{ opacity: 1, y: 0, transition: { duration: 600 } }"
-          class="mb-16"
+          class="mb-20 text-center"
         >
-          <div class="flex items-center gap-2 mb-4">
+          <div class="flex items-center justify-center gap-2 mb-4">
             <div class="w-8 h-[2px] bg-red-500" />
             <span class="text-red-500 text-sm font-semibold tracking-wider uppercase">Proses Kami</span>
+            <div class="w-8 h-[2px] bg-red-500" />
           </div>
-          <h2 class="text-3xl md:text-4xl font-bold mb-3">Cara Kerjanya</h2>
-          <p class="text-gray-500 max-w-xl">Proses yang dirancang untuk kenyamanan Anda, dari reservasi hingga hasil yang memukau.</p>
+          <h2 class="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Cara Kerjanya</h2>
+          <p class="text-gray-500 max-w-xl mx-auto">Proses yang dirancang untuk kenyamanan Anda, dari reservasi hingga hasil yang memukau.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-4">
-          <div
-            v-for="(item, idx) in processes"
-            :key="idx"
-            v-motion
-            :initial="{ opacity: 0, y: 30 }"
-            :visibleOnce="{ opacity: 1, y: 0, transition: { duration: 500, delay: idx * 100 } }"
-            class="relative group"
-          >
-            <div v-if="idx < 3" class="hidden md:block absolute top-10 left-[60%] w-full h-[1px] bg-gradient-to-r from-white/[0.08] to-transparent" />
-            <div class="p-6 rounded-none bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.04] transition-all duration-300 h-full">
-              <div class="flex items-center gap-3 mb-4">
-                <span class="text-red-500/40 text-2xl font-bold">{{ item.step }}</span>
-                <div class="w-10 h-10 rounded-none bg-red-500/10 text-red-500 flex items-center justify-center">
-                  <Icon :name="item.icon" :size="24" />
-                </div>
+        <div class="relative pt-4">
+          <!-- Horizontal Connecting Line (Desktop) -->
+          <div class="hidden md:block absolute top-[36px] left-[12.5%] right-[12.5%] h-[1px] bg-gradient-to-r from-red-600/0 via-red-600/30 to-red-600/0 z-0" />
+          
+          <!-- Vertical Connecting Line (Mobile) -->
+          <div class="md:hidden absolute top-4 bottom-4 left-8 w-[1px] bg-gradient-to-b from-red-600/0 via-red-600/30 to-red-600/0 z-0" />
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-6 relative z-10">
+            <div
+              v-for="(item, idx) in processes"
+              :key="idx"
+              v-motion
+              :initial="{ opacity: 0, y: 30 }"
+              :visibleOnce="{ opacity: 1, y: 0, transition: { duration: 500, delay: idx * 150 } }"
+              class="relative group flex flex-row md:flex-col items-start md:items-center gap-6 md:gap-8"
+            >
+              <!-- Node -->
+              <div class="w-16 h-16 shrink-0 rounded-full bg-[#050505] border border-white/10 group-hover:border-red-500 shadow-2xl flex items-center justify-center transition-all duration-500 relative z-10 group-hover:scale-110 group-hover:shadow-[0_0_30px_rgba(220,38,38,0.2)]">
+                <span class="text-white font-bold text-xl group-hover:text-red-500 transition-colors">{{ item.step }}</span>
               </div>
-              <h3 class="text-lg font-bold text-white mb-2">{{ item.title }}</h3>
-              <p class="text-gray-500 text-sm leading-relaxed">{{ item.desc }}</p>
+              
+              <!-- Content block -->
+              <div class="text-left md:text-center mt-1 md:mt-0">
+                 <h3 class="text-xl font-bold text-white mb-3 group-hover:text-red-500 transition-colors duration-300">{{ item.title }}</h3>
+                 <p class="text-gray-500 text-sm leading-relaxed md:max-w-[220px] mx-auto">{{ item.desc }}</p>
+              </div>
             </div>
           </div>
         </div>
